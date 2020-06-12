@@ -21,5 +21,6 @@ namespace BigSchool.Models
         {
             return new ApplicationDbContext();
         }
+       
     }
 }
