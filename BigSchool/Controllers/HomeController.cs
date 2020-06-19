@@ -15,13 +15,14 @@ namespace BigSchool.Controllers
         {
             _dbContext = new ApplicationDbContext();
         }
+
         public ActionResult Index()
         {
-            var upcommingCourses = _dbContext.Course
-            .Include(c => c.Lecturer)
-            .Include(c => c.Category)
-            .Where(c=>c.DateTime > DateTime.Now);
-            return View(upcommingCourses);
+            var upcomingCourses = _dbContext.Courses
+                .Include(c => c.Lecturer)
+                .Include(c => c.Category)
+                .Where(c => c.DateTime > DateTime.Now);
+            return View(upcomingCourses);
         }
 
         public ActionResult About()
