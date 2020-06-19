@@ -16,7 +16,7 @@
     white-space: normal;
 }
 .navbar-inverse {
-    background-color: #305400;
+    background-color: #2711b3;
     border-color: #080808;
 }
 /* Set width on the form input elements since they're 100% wide by default */
@@ -25,4 +25,3 @@ select,
 textarea {
     max-width: 280px;
 }
-
