@@ -15,8 +15,9 @@
 .dl-horizontal dt {
     white-space: normal;
 }
+
 .navbar-inverse {
-    background-color: #2711b3;
+    background-color: #273D48;
     border-color: #080808;
 }
 /* Set width on the form input elements since they're 100% wide by default */
@@ -25,3 +26,26 @@ select,
 textarea {
     max-width: 280px;
 }
+/*course layout*/
+.course {
+    list-style: none;
+}
+
+    .course > li {
+        position: relative;
+        margin-bottom: 30px;
+    }
+
+        .course > li .date {
+            text-align: center;
+            background-color: #3035d1;
+            color: white;
+            width: 60px;
+            border-radius: 8px;
+        }
+
+        .course > li .details {
+            position: absolute;
+            top: 0;
+            left: 70px;
+        }
