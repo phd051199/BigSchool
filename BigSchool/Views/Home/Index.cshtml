@@ -2,15 +2,16 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
+<h2>Home</h2>
 @using (Html.BeginForm())
 {
-    <p>
-        @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
-    </p>
+    <div class="form-group">
+        <p>
+            @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+    </div>
 }
-<h2>Index</h2>
 <div class="row">
     <ul class="course">
         @foreach (var course in Model.UpcommingCourses)
@@ -73,7 +74,5 @@
                     });
             });
         });
-
     </script>
-
 }
