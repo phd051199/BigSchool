@@ -67,11 +67,27 @@ namespace BigSchool.Controllers
             return View(ViewModel);
         }
         [Authorize]
+        //public ActionResult Following()
+        //{
+        //    var userId = User.Identity.GetUserId();
+        //    var lecturer = _dbContext.Followings
+        //        .Where(a => a.FolloweeId == userId)
+        //        .Select(a => a.Follower)
+        //        .ToList();
+        //    var ViewModel = new FollowingViewModel
+        //    {
+        //        Followings = lecturer,
+        //        ShowAction = User.Identity.IsAuthenticated
+        //    };
+        //    return View(ViewModel);
+        //}
+        [Authorize]
         public ActionResult Mine()
         {
             var userId = User.Identity.GetUserId();
             var courses = _dbContext.Courses
                 .Where(a => a.LecturerID == userId && a.DateTime > DateTime.Now)
+                .Where(a => a.IsCanceled == false)
                 .Include(l => l.Lecturer)
                 .Include(a => a.Category)
                 .ToList();

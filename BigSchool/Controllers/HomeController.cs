@@ -22,7 +22,7 @@ namespace BigSchool.Controllers
                 .Include(c => c.Lecturer)
                 .Include(c => c.Category)
                 .Where(c => c.DateTime > DateTime.Now)
-                .Where(c => c.IsCanceled == false)
+                //.Where(c => c.IsCanceled == false)
                 .OrderBy(c => c.DateTime);
             var viewModel = new CoursesViewModel
             {

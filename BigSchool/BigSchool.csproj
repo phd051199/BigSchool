@@ -210,6 +210,7 @@
     <Compile Include="Controllers\FollowingsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="DTOs\AttendanceDto.cs" />
     <Compile Include="DTOs\FollowingDto.cs" />
     <Compile Include="Global.asax.cs">
@@ -257,6 +258,7 @@
     <Compile Include="ViewModels\CoursesViewModel.cs" />
     <Compile Include="ViewModels\CourseViewModel.cs" />
     <Compile Include="ViewModels\CustomViewModel.cs" />
+    <Compile Include="ViewModels\FollowingViewModel.cs" />
     <Compile Include="ViewModels\FutureDate.cs" />
     <Compile Include="ViewModels\ValidTime.cs" />
   </ItemGroup>
@@ -326,6 +328,8 @@
     <Content Include="Views\Courses\Create.cshtml" />
     <Content Include="Views\Courses\Attending.cshtml" />
     <Content Include="Views\Courses\Mine.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Courses\Following.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
