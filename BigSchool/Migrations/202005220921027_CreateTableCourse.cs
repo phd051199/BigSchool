@@ -21,25 +21,25 @@ namespace BigSchool.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        LecturerId = c.String(nullable: false, maxLength: 128),
+                        LecturerID = c.String(nullable: false, maxLength: 128),
                         Place = c.String(nullable: false, maxLength: 255),
                         DateTime = c.DateTime(nullable: false),
-                        CategoryId = c.Byte(nullable: false),
+                        CategoryID = c.Byte(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Categories", t => t.CategoryId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.LecturerId, cascadeDelete: true)
-                .Index(t => t.LecturerId)
-                .Index(t => t.CategoryId);
+                .ForeignKey("dbo.Categories", t => t.CategoryID, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.LecturerID, cascadeDelete: true)
+                .Index(t => t.LecturerID)
+                .Index(t => t.CategoryID);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Courses", "LecturerId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Courses", "CategoryId", "dbo.Categories");
-            DropIndex("dbo.Courses", new[] { "CategoryId" });
-            DropIndex("dbo.Courses", new[] { "LecturerId" });
+            DropForeignKey("dbo.Courses", "LecturerID", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Courses", "CategoryID", "dbo.Categories");
+            DropIndex("dbo.Courses", new[] { "CategoryID" });
+            DropIndex("dbo.Courses", new[] { "LecturerID" });
             DropTable("dbo.Courses");
             DropTable("dbo.Categories");
         }

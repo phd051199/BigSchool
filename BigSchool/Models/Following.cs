@@ -10,7 +10,7 @@ namespace BigSchool.Models
     public class Following
     {
         [Key]
-        [Column(Order = 1)]
+        [Column(Order=1)]
         public string FollowerId { get; set; }
         [Key]
         [Column(Order = 2)]
