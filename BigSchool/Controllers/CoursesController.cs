@@ -109,7 +109,7 @@ namespace BigSchool.Controllers
         public ActionResult Details(int id)
         {
             var userId = User.Identity.GetUserId();
-            var course = _dbContext.Courses.Single(c => c.Id == id && c.LecturerID == userId);
+            var course = _dbContext.Courses.Single(c => c.Id == id/* && c.LecturerID == userId*/);
             var viewModel = new CourseViewModel
             {
                 Categories = _dbContext.Categories.ToList(),
