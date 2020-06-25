@@ -2,37 +2,45 @@
 @{
     ViewBag.Title = "Home Page";
 }
+
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
 <h2>Index</h2>
 <div class="row">
     <ul class="course">
         @foreach (var course in Model.UpcommingCourses)
         {
-        <li>
+            <li>
 
-            <div class="date">
-                <div class="month">@course.DateTime.ToString("MM")</div>
-                <div class="day">@course.DateTime.ToString("dd")</div>
-            </div>
-            <div class="detail">
-                <span class="lecturer">
-                    @course.Lecturer.Name
-                    @if (Model.ShowAction)
-                    {
-                        <button class= "btn btn-default btn-sm js-toggle-follow" data-user-id="@course.LecturerID">Follow</button>
-                    }
-                </span>
-                <span class="category">
-                    @course.Category.Name
-                </span>
+                <div class="date">
+                    <div class="month">@course.DateTime.ToString("MM")</div>
+                    <div class="day">@course.DateTime.ToString("dd")</div>
+                </div>
+                <div class="detail">
+                    <span class="lecturer">
+                        @course.Lecturer.Name
+                        @if (Model.ShowAction)
+                        {
+                            <button class="btn btn-default btn-sm js-toggle-follow" data-user-id="@course.LecturerID">Follow</button>
+                        }
+                    </span>
+                    <span class="category">
+                        @course.Category.Name
+                    </span>
                     @if (Model.ShowAction)
                     {
                         <button data-course-id="@course.Id" class="bth btn-default btn-sm js-toggle-attendance">Going?</button>
                     }
-                <span class="details">
-                    <a href="@Url.Action("Details", "Courses", new { id = course.Id})">Details</a>
-                </span>
-            </div>
-        </li>
+                    <span class="details">
+                        <a href="@Url.Action("Details", "Courses", new { id = course.Id})">Details</a>
+                    </span>
+                </div>
+            </li>
         }
     </ul>
 </div>
@@ -53,7 +61,7 @@
                         alert("Something fail");
                     });
             });
-          
+
             $(".js-toggle-follow").click(function (e) {
                 var button = $(e.target);
                 $.post("/api/followings", { FolloweeId: button.attr("data-user-id") }).done(function () {
