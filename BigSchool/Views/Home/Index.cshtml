@@ -3,17 +3,14 @@
     ViewBag.Title = "Home Page";
 }
 <h2>Home</h2>
-@using (Html.BeginForm())
-{
-    <div class="form-group">
-        <p>
-            @Html.TextBox("SearchString")
-            <input type="submit" value="Search" />
-        </p>
-    </div>
-}
+
 <div class="row">
     <ul class="course">
+        <p>
+            @Html.TextBox("SearchString")
+            <input type="submit" value="Search"/>
+        </p>
+
         @foreach (var course in Model.UpcommingCourses)
         {
             <li>
