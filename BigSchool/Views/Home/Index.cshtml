@@ -18,7 +18,7 @@
                     @course.Lecturer.Name
                     @if (Model.ShowAction)
                     {
-                        <button class=" btn btn-default btn-sm js-toggle-follow" data-user-id="@course.LecturerID">Follow</button>
+                        <button class= "btn btn-default btn-sm js-toggle-follow" data-user-id="@course.LecturerID">Follow</button>
                     }
                 </span>
                 <span class="category">
@@ -28,6 +28,9 @@
                     {
                         <button data-course-id="@course.Id" class="bth btn-default btn-sm js-toggle-attendance">Going?</button>
                     }
+                <span class="details">
+                    <a href="@Url.Action("Details", "Courses", new { id = course.Id})">Details</a>
+                </span>
             </div>
         </li>
         }
@@ -50,6 +53,7 @@
                         alert("Something fail");
                     });
             });
+          
             $(".js-toggle-follow").click(function (e) {
                 var button = $(e.target);
                 $.post("/api/followings", { FolloweeId: button.attr("data-user-id") }).done(function () {

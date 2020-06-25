@@ -26,9 +26,9 @@
                     @course.Category.Name
                     @if (Model.ShowAction)
                      {
-                    var userId = User.Identity.GetUserId();
-                    ApplicationDbContext _dbContext = new ApplicationDbContext();
-                    bool isGoing = _dbContext.Attendances.Any(a => a.CourseId == course.Id && a.AttendeeId == userId);
+                        var userId = User.Identity.GetUserId();
+                        ApplicationDbContext _dbContext = new ApplicationDbContext();
+                        bool isGoing = _dbContext.Attendances.Any(a => a.CourseId == course.Id && a.AttendeeId == userId);
 
                     if (isGoing)
                     {
