@@ -67,20 +67,15 @@ namespace BigSchool.Controllers
             return View(ViewModel);
         }
         [Authorize]
-        //public ActionResult Following()
-        //{
-        //    var userId = User.Identity.GetUserId();
-        //    var lecturer = _dbContext.Followings
-        //        .Where(a => a.FolloweeId == userId)
-        //        .Select(a => a.Follower)
-        //        .ToList();
-        //    var ViewModel = new FollowingViewModel
-        //    {
-        //        Followings = lecturer,
-        //        ShowAction = User.Identity.IsAuthenticated
-        //    };
-        //    return View(ViewModel);
-        //}
+        public ActionResult Following()
+        {
+            var userId = User.Identity.GetUserId();
+            var viewModel = _dbContext.Followings
+                .Where(a => a.FollowerId == userId)
+                .Select(a => a.Followee)
+                .ToList();
+            return View(viewModel);
+        }
         [Authorize]
         public ActionResult Mine()
         {
