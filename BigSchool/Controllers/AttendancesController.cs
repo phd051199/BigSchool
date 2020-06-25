@@ -20,20 +20,34 @@ namespace BigSchool.Controllers
             _dbContext = new ApplicationDbContext();
         }
         [HttpPost]
-       public IHttpActionResult Attend(AttendanceDto adto )
+        public IHttpActionResult Attend(AttendanceDto adto)
         {
             int CourseId = adto.CourseId;
-           var userId = User.Identity.GetUserId();
-           if (_dbContext.Attendances.Any(a => a.AttendeeId == userId && a.CourseId == CourseId))
-               return BadRequest("The Attendances are already exists");
-           var attendance = new Attendance
-           {
-               CourseId = CourseId,
-               AttendeeId = userId
-           };
-           _dbContext.Attendances.Add(attendance);
-           _dbContext.SaveChanges();
-           return Ok();
-       }  
+            var userId = User.Identity.GetUserId();
+            if (_dbContext.Attendances.Any(a => a.AttendeeId == userId && a.CourseId == CourseId))
+                return BadRequest("The Attendances are already exists");
+            var attendance = new Attendance
+            {
+                CourseId = CourseId,
+                AttendeeId = userId
+            };
+            _dbContext.Attendances.Add(attendance);
+            _dbContext.SaveChanges();
+            return Ok();
+        }
+        [HttpDelete]
+        public IHttpActionResult DeleteAttendance(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            var attendance = _dbContext.Attendances.SingleOrDefault(a => a.AttendeeId == userId && a.CourseId == id);
+            if (attendance == null)
+            {
+                return NotFound();
+            }
+            _dbContext.Attendances.Remove(attendance);
+            _dbContext.SaveChanges();
+            return Ok(id);
+        }
+
     }
 }
