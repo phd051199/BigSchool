@@ -24,7 +24,7 @@ namespace BigSchool.Controllers
             var ViewModel = new CourseViewModel
             {
                 Categories = _dbContext.Categories.ToList(),
-                Heading="Add Course"
+                Heading = "Add Course"
             };
             return View(ViewModel);
         }
@@ -41,9 +41,9 @@ namespace BigSchool.Controllers
             var course = new Course
             {
                 LecturerID = User.Identity.GetUserId(),
-                DateTime=viewModel.GetDateTime(),
-                CategoryID=viewModel.Category,
-                Place=viewModel.Place
+                DateTime = viewModel.GetDateTime(),
+                CategoryID = viewModel.Category,
+                Place = viewModel.Place
             };
             _dbContext.Courses.Add(course);
             _dbContext.SaveChanges();
@@ -59,9 +59,10 @@ namespace BigSchool.Controllers
                 .Include(l => l.Lecturer)
                 .Include(l => l.Category)
                 .ToList();
-            var ViewModel = new CoursesViewModel {
-                UpcommingCourses=courses,
-                ShowAction=User.Identity.IsAuthenticated
+            var ViewModel = new CoursesViewModel
+            {
+                UpcommingCourses = courses,
+                ShowAction = User.Identity.IsAuthenticated
             };
             return View(ViewModel);
         }
@@ -70,7 +71,7 @@ namespace BigSchool.Controllers
         {
             var userId = User.Identity.GetUserId();
             var courses = _dbContext.Courses
-                .Where(a => a.LecturerID == userId && a.DateTime>DateTime.Now)                
+                .Where(a => a.LecturerID == userId && a.DateTime > DateTime.Now)
                 .Include(l => l.Lecturer)
                 .Include(a => a.Category)
                 .ToList();
@@ -80,7 +81,7 @@ namespace BigSchool.Controllers
         public ActionResult Edit(int id)
         {
             var userId = User.Identity.GetUserId();
-            var course = _dbContext.Courses.Single(c=>c.Id==id && c.LecturerID==userId);
+            var course = _dbContext.Courses.Single(c => c.Id == id && c.LecturerID == userId);
             var viewModel = new CourseViewModel
             {
                 Categories = _dbContext.Categories.ToList(),
@@ -91,7 +92,7 @@ namespace BigSchool.Controllers
                 Heading = "Edit Course",
                 Id = course.Id
             };
-            return View("Create",viewModel);
+            return View("Create", viewModel);
         }
         [Authorize]
         [HttpPost]
